@@ -3,6 +3,8 @@ Various tutorial-following source files
 
 The titles of the source files keep a trend, and I plan to keep it that way. The names of the compiled files vary a bit more for (in my opinion) reasonable reasons, from `learningcpp` to `learningc` to `learningkot.jar`.
 
+<br>
+
 ### learning.cpp
 The first file in this set, and the first to follow the naming trend. It is basically finished. I completed the tutorial I was following. I may edit it more when I find something I feel is good to have in my consolidated "everything I absolutely need to know" file.
 
