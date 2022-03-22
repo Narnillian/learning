@@ -281,7 +281,7 @@ int main(int argc, char** argv) { //start function -- main() runs on file execut
   int emptyArray[3]; //you can declare arrays and add values later, but size is required
   intArray[2] = 9792357; //you can change values
   strArray[2] = "new value2"; //even for set length arrays
-  intArray[4] = 6543984; //this throws error -- length is set
+  //intArray[4] = 6543984; //this throws error at garbage collection/end of execution -- length is set
   cout << intArray <<"\n";
   //loop through array:
   cout << "loop through array:\n";
@@ -381,7 +381,7 @@ int main(int argc, char** argv) { //start function -- main() runs on file execut
   cin >> inputString; //get input, and assign value to `inputString`
   cout << "YOUR STRING: \"" << inputString << "\"\n"; //output `inputNumber
   /*
-  experiment with this stuff, but works weird if after cin i think ---delete add asterisk here to run `getline()`, etc. -->/
+  experiment with this stuff, but works weird if after cin i think ---delete/add asterisk here to run `getline()`, etc. -->/
   getline(cin, getlineVar);
   cout << "getlineVar: " << getlineVar << "\n";
   /**/

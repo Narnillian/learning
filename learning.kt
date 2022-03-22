@@ -24,57 +24,309 @@ kompile [source].kt [result].jar [-verbose]
 */
 
 
+fun firstFunction() { //kinda
+	println("This is the first function that's not `main()`!")
+}
+
+
 
 fun main() {
 //very fun
 
-    //intro
-    println("Hello world!")
-    print("Kotlin")
-    print(" has `println()` and `print()`.\n") //\n!
+	//intro
+	println("Hello world!")
+	print("Kotlin")
+	print(" has `println()` and `print()`.\n") //\n!
 
-    //ANSI
-    print("\u001b[42m") //set output highlight green  -- u+001b is unicode escape | also, no closing newline
-    print("This is highlighted with ANSI") //print this -- it's green | also, no closing newline
-    println("\u001b[49m") //reset output formatting | also, no closing newline -- all three of the last lines operate on the same line -- this one adds newline
-    
-    
-    println("\n")
-
-
-    //variables
-    var variable1 = "This is the first variable" //types are inferred
-    val variable2 = "This is a variable declared with `val`"
-    println(variable1)
-    println(variable2)
-    variable1 = "Variables declared with `var` *can* be modified"
-    println(variable1)
-    //variable2 = "Cannot be changed"
-    //variable1 = 284484              //types must remain consistent
-    val declaredWithType: String      //when declaring without init, type "annotation" is required
-    declaredWithType = "This was declared without initialization, then initialized later"
-    println(declaredWithType)
-    /*
-    **types:**'
-    Byte
-    Int
-    Double -- must have a decimal, or error
-    Char
-    Boolean -- must be full word (`Bool` doesn't do the trick)
-    String
-    */
-    var tester = 50L
-    println(tester)
-
-        
+	//ANSI
+	print("\u001b[42m") //set output highlight green  -- u+001b is unicode escape | also, no closing newline
+	print("This is highlighted with ANSI") //print this -- it's green | also, no closing newline
+	println("\u001b[49m") //reset output formatting | also, no closing newline -- all three of the last lines operate on the same line -- this one adds newline
+	
+	
+	println("\n")
 
 
-    println("\n")
+	//variables
+	var variable1 = "This is the first variable" //types are inferred
+	val variable2 = "This is a variable declared with `val`"
+	println(variable1)
+	println(variable2)
+	variable1 = "Variables declared with `var` *can* be modified"
+	println(variable1)
+	//variable2 = "Cannot be changed"
+	//variable1 = 284484              //types must remain consistent
+	val declaredWithType: String      //when declaring without init, type "annotation" is required
+	declaredWithType = "This was declared without initialization, then initialized later"
+	println(declaredWithType)
+	/*
+	**types:**
+	  Whole numbers:
+		Byte
+		Short
+		Int -- default
+		Long
+	  Decimals:
+		Float -- must have a decimal, or error | must have an `F` after the number, or else it will try, and fail, to make Double
+		Double -- default | must have a decimal, or error
+	  Character stuff
+		Char -- single quotes | NO ASCII
+		String  -- double quotes
+	Boolean -- must be full word (`Bool` doesn't do the trick)
+	*/
+	var testLong = 50L //L tells the compiler to make it a Long, not Int
+	println("testLong is a Long: " + testLong)
+	/*
+	Type conversion:
+		toByte()
+		toShort()
+		toInt()
+		toLong()
+		toFloat()
+		toDouble()
+		toChar()
+	*/
+
+	
+
+	println("\n")
 
 
-    //random
-    print("Semicolons are optional");print(", see?")
+	//operators
+	/*Kotlin uses standard operators
+	//arithmetic: +, -, *, /, %, ++, --
+	//assignment: =, +=, -=, *=, /=, %=
+	//comparison: ==, !=, >, <, >=, <=
+	//logical: &&, ||, !
+	*/
 
-    println()
+
+
+	//strings
+	var aString = "I am a string"
+	println(aString)
+	print(aString[0])
+	print(aString[1])
+	print(aString[2])
+	print(aString[3])
+	print(aString[4])
+	print(aString[7]) //purposeful skip
+	print(aString[8])
+	print(aString[9])
+	print(aString[10])
+	print(aString[11])
+	print(aString[12])
+	print("\n")
+	println("length of `aString`: " + aString.length)
+	println(aString.uppercase())
+	println(aString.lowercase())
+	var anotherString = "I am a string"
+	var aThirdString = "I am not a string"
+	println(aString.compareTo(anotherString))
+	println(aString.compareTo(aThirdString))
+	println(aThirdString.compareTo(aString))
+	println(aString.indexOf("am"))
+	var quoteString = "Quotes shouldn't be an issue. It is often said, \"Don't make more variables when you don't have to\""
+	println(quoteString)
+	println("This is the first part" + ", and this is the second part")
+	println("This is the first part".plus(", and this is the second part"))
+	println("Guess what? $aString! And I was printed with a \"template\"!")
+	
+
+	println("\n")
+
+
+	//booleans
+	//all standard stuff
+	var stringsMatch = (aString == anotherString) //parentheses not strictly neccesary, but improve readability
+
+
+	//if/else statements!
+	//the good stuff!
+	if (stringsMatch) //parentheses required
+	{
+	  println("The strings match!")
+	}
+	else
+	{
+	  println("The strings don't match!")
+	}
+	val time = 9
+	if(time < 12) {
+	  println("Morning (Before noon)")
+	} else if(time < 19) {
+	  println("Afternoon (After noon)")
+	} else {
+	  println("Nighttime (After sunset)")
+	}
+	val timeOfDay = if (time < 12) { "Morning" } else if (time < 19) { "Afternoon" } else { "Nighttime" }
+	println(timeOfDay)
+	//single line `if`s
+	if (testLong > 49L) println("testLong is greater than 49L")
+	
+
+	println("\n")
+
+  
+	//when
+	val day = 4
+	println("The day is...")
+	val result = when (day) {
+		1 -> "Monday"
+		2 -> "Tuesday"
+		3 -> "Wednesday"
+		4 -> "Thursday"
+		5 -> "Friday"
+		6 -> "Saturday"
+		7 -> "Sunday"
+		else -> "Invalid day."
+	}
+	println(result)
+	when (day) {
+		1 -> println("Monday")
+		2 -> println("Tuesday")
+		3 -> println("Wednesday")
+		4 -> println("Thursday")
+		5 -> println("Friday")
+		6 -> println("Saturday")
+		7 -> println("Sunday")
+		else -> println("Invalid day.")
+	}
+
+
+	println("\n")
+
+
+	var i = 0
+	while (i < 10) {
+		println("`while` Loop " + i)
+		i++
+	}
+	do {
+		println("`do`/`while` loop " + i)
+		i++
+	} while (i < 15)
+	i = 0
+	while (true) {
+		i++
+		if (i == 4) continue
+		if (i == 8) break
+		println("Looping forever..." + i)
+	}
+
+
+	println("\n")
+
+
+	//arrays
+	var apples = arrayOf("Gala", "Opal", "Granny Smith", "Green Delicious")
+	println(apples[0] + " apples are delicious!")
+	val cars = arrayOf("Volvo", "BMW", "Ford", "Mazda")
+	val nums = arrayOf(1, 5, 10, 15, 20)
+	apples[3] = "Fuji"
+	cars[2] = "Mustang" //apparently `val` arrays can still be changed!
+	println(apples)
+	println(cars)
+	println(nums)
+	println("Array `cars` has " + cars.size + " values")
+	//if ("Toyota" not in cars) { println("Toyota is not in cars!") }
+	if ("Toyota" in cars) {
+		println("Toyota is in cars!")
+	} else {
+		println("Toyota is not in cars!")
+	}
+	println("Apples:")
+	for (apple in apples) {
+		println(apple)
+	}
+
+
+	println("\n")
+
+
+	//ranges
+	for (i in 1..5) { //warns that `i` is "shadowed" because it is used earlier
+		println(i)    //
+	}
+	println(i) //prints 8 from when i was being used earlier.
+	for (letter in 'a'..'n') {
+		print(letter)
+	}
+	println()
+	//
+	//miscelaneous stuff on the `ranges` page
+	//`in` can also be used for comparison, as seen above
+	if (15 in nums) {
+		println("15 is in `nums`")
+	} else {
+		println("15 is NOT in `nums`")
+	}
+	//also `break` and `continue` can be used in a `for` obviously
+
+
+	println("\n")
+
+	//functions
+	firstFunction() //declared above
+	secondFunction() //declared below -- functions DO NOT NEED to be declared above
+	firstFunWithParams("tutorial-reading person")
+	multipleParams("Barbara", 55)
+	println(functionThatReturns(5,7))
+	println(anotherReturningFunction("These should be ", "concatenated")) //use shorter function names! this is ridiculous!
+	println(shorthandReturn(15,9))
+
+
+	println("\n")
+
+
+	//OOP
+	class Person {
+		var firstName = "Joe"
+		var lastName = "Smith"
+		var age = 19
+		var hairColor = "Brown"
+	}
+	val person1 = Person()
+	println(person1)
+	println(person1.firstName)
+	println(person1.lastName)
+	println(person1.age)
+	println(person1.hairColor)
+	val person2 = Person()
+	person2.firstName = ""
+
+
+
+
+
+	println("\n")
+
+
+	//random
+	print("Semicolons are optional");print(", see?");
+
+	println()
 }
 
+fun secondFunction() {
+	println("This is the third function really!")
+}
+
+fun firstFunWithParams(nname: String) { //type needs to be declared, or else it's not a variable!
+	println("Nice to meet you, " + nname + "!")
+}
+
+fun multipleParams(name:String, age:Int) {
+	println(name + " is " + age + " years old")
+}
+
+fun functionThatReturns(firstNum:Int, secondNum:Int):Int { //return value type declaration required
+	return firstNum + secondNum
+}
+
+fun anotherReturningFunction(firstString:String, secondString:String):String { //return value type declaration required for all data types
+	var result = firstString + secondString
+	return result
+}
+
+fun shorthandReturn(x:Int,y:Int) = x - y
