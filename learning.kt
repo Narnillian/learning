@@ -28,9 +28,16 @@ fun firstFunction() { //kinda
 	println("This is the first function that's not `main()`!")
 }
 
+class Room {
+	var size = 85 //all variables must be initialized
+	var wallColor = "White"
+	var furniture1 = "Table"
+	var furniture2 = "Chair"
+}
 
+class Car(var brand: String, var model: String, var year: Int) //called a constructor -- variables cannot be initialized!
 
-fun main() {
+fun main(args: Array<String>) { //command line args!
 //very fun
 
 	//intro
@@ -286,14 +293,34 @@ fun main() {
 		var age = 19
 		var hairColor = "Brown"
 	}
-	val person1 = Person()
+	val person1 = Person() //doesn't have to be `val`, but that's what the tutorial did, so i just went with it
 	println(person1)
 	println(person1.firstName)
 	println(person1.lastName)
 	println(person1.age)
 	println(person1.hairColor)
 	val person2 = Person()
-	person2.firstName = ""
+	person2.firstName = "Alan"
+	person2.lastName = "Turing"
+	person2.age = 41
+	//var person2.committedSuicide = false //cannot add properties
+	println(person2)
+	println(person2.firstName)
+	println(person2.lastName)
+	println(person2.age)
+	println(person2.hairColor)
+	val room1 = Room()
+	println(room1)
+	println(room1.size)
+	println(room1.wallColor)
+	println(room1.furniture1)
+	println(room1.furniture2)
+	val myCar = Car("Toyota", "Prius", 2007) //constructor
+	val yourCar = Car("Honda","Civic",2012) //wow easier
+	yourCar.year = 2010
+	println(myCar)
+	println(yourCar)
+
 
 
 
@@ -303,9 +330,27 @@ fun main() {
 
 
 	//random
-	print("Semicolons are optional");print(", see?");
+	print("Semicolons are optional");println(", see?");
+	//cli args
+	if (args.size > 1) {
+		println("Ladies and Gentlemen, your ARGUMENTS!")
+		for (i in args) {
+			print("\t")
+			println(i)
+		}
+		println("*audience applause*")
+	} else { println("There are no arguments") }
+	/*
+	//hack to get dimensions of terminal -- very finnicky
+	print("\u001b[s\u001b[5000;5000H") //save position and move to (5000,5000)
+	//System.out.flush()
+	//print("\u001b[6n")
+	var termSize = "\u001b[6n" //gets position WHEN OUTPUTTED, NOT WHEN INITIALIZED
+	println(termSize)
+	//System.out.flush()
+	println("\u001b[u\n")
+	*/
 
-	println()
 }
 
 fun secondFunction() {
