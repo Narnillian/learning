@@ -1,3 +1,8 @@
+/*
+From W3Schools' C++ tutorial: https://w3schools.com/cpp
+I am using GNU C/C++ Compiler (gcc/g++)
+
+*/
 #include <iostream> //allows I/O -- input/output
 #include <string> //there is a built in type `string`, but this allows better use. to use C's <string.h>, include <cstring>. they have some different functions.
 #include <cmath>
@@ -26,6 +31,12 @@ using namespace std; //we're using the standard library -- without this it would
 */
 
 
+/*
+There are some parts of the program that must be declared above `main()`.
+I highly suggest you start from the beginning of `main()`, and return here when you get to that part of the tutorial
+*/
+
+
 //functions! yay
 //*must* be above declared `main()` or else error
 void myFunction() {
@@ -38,6 +49,131 @@ string functionThatReturns();
 //overloading!
 int overloaded(int x, int y);
 string overloaded(string x, string y);
+
+
+//OOP
+class myFirstClass {
+  public:
+    int myNum;
+    string myString;
+    
+
+    //methods
+    //inside class method
+    int printAttributes() {
+      cout << myNum << "\n";
+      cout << myString << "\n";
+      return 0;
+    }
+    //outside class method
+    int printAttributesReversed();
+    //methods can have args, etc
+};
+class anotherClass {
+  public:
+    int someAttribute;
+
+    //constructor
+    anotherClass() {
+      //must have same name as class
+      //always public
+      //no return -- `void` method
+      cout << "You have created an Object of type `anotherClass`, and it has the attribute `someAttribute` of type Int\n";
+    }
+};
+//constructors can also be declared outside of the class, like normal methods -- needs to be investigated
+class cstructWithArgs {
+  public:
+    int iNeedAValue;
+    string iCantThinkOfNames;
+
+    int printAttributes() {
+      cout << iNeedAValue << "\n";
+      cout << iCantThinkOfNames << "\n";
+      return 0;
+    }
+
+    cstructWithArgs(int x = 0, string y = "") {
+      iNeedAValue = x;
+      iCantThinkOfNames = y;
+      cout << "`iNeedAValue has been given the value " << x << " and `iCantThinkOfNames` has been initialized with \"" << y << "\".\n";
+    }
+};
+class accesses {
+  //attributes are private by default
+  public:
+    int x = 200;
+  private:
+    int y = 200;
+  protected:
+    int z = 200;
+  //best practice: keep as many variables private as possible
+
+  //access workaround/protector (depends how you look at it)
+  public:
+    //hey references!
+    int printPrivates(int &variable) {
+      cout << variable << "\n";
+      return 0;
+    }
+    int modifyPrivates(int &variable, int newVal) {
+      //doesnt work how i wish
+      variable = newVal;
+      return 0;
+    }
+    int printY() {
+      cout << y << "\n";
+      return 0;
+    }
+    int modifyY(int newVal) {
+      y = newVal;
+      return 0;
+    }
+};
+//copied:
+// Base class
+class Vehicle {
+  public:
+    string brand = "Ford";
+    void honk() {
+      cout << "Toot, toot! \n" ;
+    }
+};
+// Derived class
+class Car: public Vehicle {
+  public:
+    string model = "Mustang";
+};
+//end copy
+class Performance: private Car { //private: cannot access `model`, `honk()`
+  public:
+    string usage = "Racing";
+};
+class twoParents: public Car, public accesses {
+};
+//polymorphism --- copied
+// Base class
+class Animal {
+  public:
+    void animalSound() {
+    cout << "The animal makes a sound \n" ;
+  }
+};
+// Derived class
+class Pig : public Animal {
+  public:
+    void animalSound() {
+    cout << "The pig says: wee wee \n" ;
+  }
+};
+// Derived class
+class Dog : public Animal {
+  public:
+    void animalSound() {
+    cout << "The dog says: bow wow \n" ;
+  }
+};
+//end copy
 
 
 
@@ -295,6 +431,40 @@ int main(int argc, char** argv) { //start function -- main() runs on file execut
 
   cout << "\n";
 
+  //structures
+  struct {
+    //member values:
+    int structInt;
+    string structString;
+  } firstStruct; //can declare more than one using commas
+  //cout << firstStruct << "\n"; //yeah no
+  firstStruct.structInt = 25;
+  firstStruct.structString = "I am a string in a structure, and I am happy as a bug in a rug";
+  cout << firstStruct.structInt << "\n";
+  cout << firstStruct.structString << "\n";
+  //int firstStruct.newValue = 99; //this is not how you add values
+  //cout << firstStruct.newValue << "\n";
+  struct myOwnType {
+    int myTypeHasInt;
+    string myTypeHasString;
+
+    int printMembers() {
+      cout << myTypeHasInt << "\n";
+      cout << myTypeHasString << "\n";
+      return 1;
+    }
+  }; //can declare variables here too
+  myOwnType thisIsMyOwn; //but this is easier
+  thisIsMyOwn.myTypeHasInt = 5;
+  thisIsMyOwn.myTypeHasString = "Hey, this is my own type! It has a string!";
+  cout << thisIsMyOwn.myTypeHasInt << "\n";
+  cout << thisIsMyOwn.myTypeHasString << "\n";
+  cout << "Printing members of `thisIsMyOwn`:\n";
+  thisIsMyOwn.printMembers();
+  //obviously i can make more with the same type
+
+  cout << "\n";
+
   //references
   //declared with `&`
   //simplifies to referenced variable instead of value
@@ -361,13 +531,14 @@ int main(int argc, char** argv) { //start function -- main() runs on file execut
   functionWithDefaultParam("fWDP ran once");
   functionWithDefaultParam();
   functionWithDefaultParam("fWDP ran a third time");
-  string holierThanThough = functionThatReturns();
-  cout << holierThanThough << "\n";
+  string holierThanThou = functionThatReturns();
+  cout << holierThanThou << "\n";
   cout << overloaded(5, 7) << "\n";
   cout << overloaded("first, ", "second") << "\n";
 
   cout << "\n";
 
+/* to skip to OOP, add asterisk -->/
   //input yay
   //`cin` considers whitespace to be termination and will ignore everything after - use `getline()`
   int inputNumber; //declare variable `inputNumber`
@@ -385,6 +556,103 @@ int main(int argc, char** argv) { //start function -- main() runs on file execut
   getline(cin, getlineVar);
   cout << "getlineVar: " << getlineVar << "\n";
   /**/
+
+  cout << "\n";
+/**/
+
+  //OOP
+  myFirstClass myFirstObject;
+  //you can obviously make more than one object from a class
+  myFirstObject.myNum = 19;
+  myFirstObject.myString = "A string from an object!";
+  cout << myFirstObject.myNum << "\n";
+  cout << myFirstObject.myString << "\n";
+  cout << "Print attributes with a method:\n";
+  myFirstObject.printAttributes();
+  /* supposedly you can make functions like this? investivate further -->/
+  int myFirstClass::printAttributesReversed() {
+    cout << myString << "\n";
+    cout << myNum << "\n";
+    return 0;
+  }
+  /**/
+  anotherClass anotherObject;
+  anotherObject.someAttribute = 87;
+  cout << anotherObject.someAttribute << "\n";
+  cstructWithArgs theseAttributesWillBeInitialized(9, "Yeah, I think so");
+  cstructWithArgs theseAttributesWIllBeDefault; //iNeedAValue will be 0 because *I* did that
+  theseAttributesWillBeInitialized.printAttributes();
+  theseAttributesWIllBeDefault.printAttributes();
+  accesses testAccess;
+  testAccess.x = 29;
+  //testAccess.y = 97; //private -- cannot modify
+  //testAccess.z = 65; //protected -- cannot modify
+  cout << testAccess.x << "\n";
+  //cout << testAccess.y << "\n"; //private -- cannot access at all
+  //cout << testAccess.z << "\n"; //protected -- cannot access at all
+  //workaround!:
+  testAccess.printPrivates(y);
+  testAccess.modifyPrivates(y,77); //doesnt work how i wish
+  testAccess.printPrivates(y);
+  testAccess.modifyY(55);
+  testAccess.printY();
+  //testAccess.printPrivates(z); //its protected!
+  //copied:
+  Car myCar;
+  myCar.honk();
+  cout << myCar.brand + " " + myCar.model << "\n";
+  //end copy
+  Performance fordGTO;
+  //fordGTO.honk(); //private -- see class declaration
+  cout << fordGTO.usage << "\n";
+  twoParents twoParentClasses;
+  twoParentClasses.honk();
+  twoParentClasses.printPrivates(y); //hmmm, printing 77
+  //polymorphism
+  Animal myAnimal;
+  Pig myPig;
+  Dog myDog;
+  myAnimal.animalSound();
+  myPig.animalSound();
+  myDog.animalSound();
+
+  cout << "\n";
+  //in the tutorial, file access comes here. that's a whole thing i'm not going to include here
+
+  //error handling
+  //copied
+  try {
+    int age = 15;
+    if (age >= 18) {
+      cout << "Access granted - you are old enough.";
+    } else {
+      throw (age); //cause an error
+    }
+  }
+  catch (int myNum) { //error manually thrown above caught here
+    cout << "Access denied - You must be at least 18 years old.\n";
+    cout << "Age is: " << myNum << "\n";
+  }
+  //end copy
+  try {
+    if (longString.length() > 20) {
+      throw 20;
+    }
+    if (longString.length() < 5) {
+      throw 5;
+    }
+  } catch (int stringLength) {
+    if (stringLength == 20) { //this is not good code, i know. just an example
+      cout << "Your string is too long!\n";
+      cout << "(Your string is greater than 20 characters)\n";
+    }
+    if (stringLength == 5) { //not good code because the number should be more specific
+      cout << "Your string is too short!\n";
+      cout << "(Your string is shorter than 5 characters)\n";
+    }
+  }
+
+
 
   //outro i guess
   return 0; //end function
