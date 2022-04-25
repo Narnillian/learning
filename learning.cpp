@@ -1,6 +1,6 @@
 /*
 From W3Schools' C++ tutorial: https://w3schools.com/cpp
-I am using GNU C/C++ Compiler (gcc/g++)
+I am using GNU C/C++ Compiler (gcc/g++) on the Crostini Debian x86_64 VM on ChromeOS
 
 */
 #include <iostream> //allows I/O -- input/output
@@ -538,7 +538,7 @@ int main(int argc, char** argv) { //start function -- main() runs on file execut
 
   cout << "\n";
 
-/* to skip to OOP, add asterisk -->/
+/* to skip to OOP, remove asterisk -->*/
   //input yay
   //`cin` considers whitespace to be termination and will ignore everything after - use `getline()`
   int inputNumber; //declare variable `inputNumber`
