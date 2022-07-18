@@ -26,7 +26,16 @@ int main() {
     int thisx = 5, thisy = 6, thisz = 7; //declare and initialize all
     int thatx, thaty, thatz = 6; //declare all, only thatz is initialized (thatx and thaty are random values)
 
+    /*
+    this isn't actually going to happen
+    i learned about C in https://github.com/narnillian/turing
 
+    C doesn't have:
+     - namespace
+     - cout/cin
+     - classes/OOP
+     - a lot of things C++ has that i dont know about
+    */
 
     printf("\n");
     return 0;
